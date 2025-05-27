@@ -23,7 +23,6 @@ Este é um jogo da memória temático dos universos Marvel e DC, feito para roda
 - `Jogo da memória.css` — Estilos do jogo
 - `manifest.json` ou `site.webmanifest` — Manifesto PWA
 - `sw.js` — Service Worker para funcionamento offline
-- Ícones (`favicon-96x96.png`, `web-app-manifest-192x192.png`, `web-app-manifest-512x512.png`, `apple-touch-icon.png`, `favicon.ico`, `favicon.svg`)
 
 ## Como instalar como app
 
