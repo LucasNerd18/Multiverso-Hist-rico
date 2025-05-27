@@ -1,0 +1,9 @@
+{
+  "name": "Jogo da Memória Marvel & DC",
+  "short_name": "Memória MarvelDC",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0074D9",
+  "theme_color": "#0074D9",
+  "orientation": "portrait"
+}
