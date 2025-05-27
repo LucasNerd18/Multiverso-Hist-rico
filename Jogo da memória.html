@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Memória - Marvel & DC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0074D9">
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="icon-192.png" sizes="192x192" />
+    <link rel="icon" type="image/png" href="icon-512.png" sizes="512x512" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Marvel e Dc" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="Jogo da memória.css">
+</head>
+<body class="hide-game">
+    <!-- Imagem de fundo -->
+    <img id="bg-image" src="https://th.bing.com/th/id/R.28faed980b5e7bd962bf7cd4a8de613d?rik=H9cACKuJEfOiiw&pid=ImgRaw&r=0" alt="Fundo Marvel e DC">
+    <!-- Tela inicial -->
+    <div id="start-screen">
+        <h1>Jogo da Memória<br>Marvel & DC</h1>
+        <p>Desafie um amigo e descubra quem tem a melhor memória de super-herói!</p>
+        <button id="start-btn">Começar</button>
+    </div>
+    <!-- Tela de nomes -->
+    <div id="name-screen" class="hide">
+        <h1>Jogadores</h1>
+        <p>Digite os nomes dos jogadores:</p>
+        <input id="player1" placeholder="Jogador 1" maxlength="12" autocomplete="off">
+        <input id="player2" placeholder="Jogador 2" maxlength="12" autocomplete="off">
+        <button id="names-btn">Iniciar Jogo</button>
+    </div>
+    <!-- Modal de vitória -->
+    <div id="victory-modal">
+        <div id="victory-content">
+            <h2 id="victory-title"></h2>
+            <p id="victory-msg"></p>
+            <button onclick="restartGame(true)">Jogar Novamente</button>
+        </div>
+    </div>
+    <h1 class="main-title">Jogo da Memória - Marvel & DC</h1>
+    <div id="timer"></div>
+    <div id="game-board"></div>
+    <div id="status"></div>
+    <button onclick="restartGame()">Reiniciar</button>
+    <script src="Jogo da memória.js"></script>
+    <script>
+        // Fluxo das telas
+        document.getElementById('start-btn').onclick = function() {
+            document.getElementById('start-screen').classList.add('hide');
+            setTimeout(() => {
+                document.getElementById('start-screen').style.display = 'none';
+                document.getElementById('name-screen').classList.remove('hide');
+            }, 700);
+        };
+        document.getElementById('names-btn').onclick = function() {
+            let p1 = document.getElementById('player1').value.trim() || "Jogador 1";
+            let p2 = document.getElementById('player2').value.trim() || "Jogador 2";
+            window.playerNames = [p1, p2];
+            document.getElementById('name-screen').classList.add('hide');
+            setTimeout(() => {
+                document.getElementById('name-screen').style.display = 'none';
+                document.body.classList.remove('hide-game');
+                if (typeof startGame === 'function') startGame();
+            }, 700);
+        };
+        // Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
